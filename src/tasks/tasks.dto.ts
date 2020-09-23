@@ -29,6 +29,7 @@ export class TasksDTO implements Readonly<TasksDTO> {
     it.title = dto.title;
     it.status = dto.status;
     it.date = dto.date;
+    it.description = dto.description;
     return it;
   }
 
@@ -38,6 +39,7 @@ export class TasksDTO implements Readonly<TasksDTO> {
       title: entity.title,
       status: entity.status,
       date: entity.date,
+      description: entity.description,
     });
   }
 
