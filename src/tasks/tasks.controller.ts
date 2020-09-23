@@ -1,23 +1,17 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { Crud, CrudController } from '@nestjsx/crud';
 
 import { TasksService } from './tasks.service';
 import { TasksDTO } from './tasks.dto';
 import { User } from '../user.decorator';
+import { Tasks } from '../model/tasks.entity';
 
+@Crud({
+  model: {
+    type: Tasks,
+  },
+})
 @Controller('tasks')
-export class TasksController {
-  constructor(private service: TasksService) {}
-
-  @Get()
-  public async getAll(): Promise<TasksDTO[]> {
-    return await this.service.getAll();
-  }
-
-  @Post()
-  public async post(
-    @User() user: User,
-    @Body() dto: TasksDTO,
-  ): Promise<TasksDTO> {
-    return this.service.create(dto, user);
-  }
+export class TasksController implements CrudController<Tasks> {
+  constructor(public service: TasksService) {}
 }
