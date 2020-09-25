@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 
 import { Tasks } from '../model/tasks.entity';
-import { TasksDTO } from './tasks.dto';
-import { User } from '../user.decorator';
+import { TasksDTO } from '../dto/tasks.dto';
+import { User } from '../../../user.decorator';
 
 @Injectable()
 export class TasksService extends TypeOrmCrudService<Tasks> {

@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 import { Tasks } from '../model/tasks.entity';
-import { User } from '../user.decorator';
+import { User } from '../../../user.decorator';
 
 export class TasksDTO implements Readonly<TasksDTO> {
   @ApiProperty({ required: true })

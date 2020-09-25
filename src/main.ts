@@ -1,24 +1,13 @@
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 import { AppModule } from './app.module';
-import { configService } from './config/config.service';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const port = process.env.PORT || 3000;
 
-  if (!configService.isProduction()) {
-    const document = SwaggerModule.createDocument(
-      app,
-      new DocumentBuilder()
-        .setTitle('Tasks manager API')
-        .setDescription('Simple api documentation and testing')
-        .setVersion('1.0')
-        .build(),
-    );
-    SwaggerModule.setup('api', app, document);
-  }
-
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();

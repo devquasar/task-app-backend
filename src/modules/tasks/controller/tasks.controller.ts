@@ -1,9 +1,8 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 
-import { TasksService } from './tasks.service';
-import { TasksDTO } from './tasks.dto';
-import { User } from '../user.decorator';
+import { TasksService } from '../service/tasks.service';
+import { TasksDTO } from '../dto/tasks.dto';
 import { Tasks } from '../model/tasks.entity';
 
 @Crud({
